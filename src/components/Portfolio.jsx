@@ -4,6 +4,7 @@ import Bnoor from '../Bnoor.png';
 import Builden from '../Builden.png';
 // import Brand from '../Brand.png';
 
+
 const PortfolioItem = ({ title, subtitle, imageUrl }) => (
   <div className="mb-8">
     <div className="w-full aspect-square mb-2 overflow-hidden">
