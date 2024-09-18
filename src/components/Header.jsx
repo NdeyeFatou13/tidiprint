@@ -17,13 +17,13 @@ const Header = () => {
   const menuItems = ['Accueil', 'Services', 'Portfolio', 'Contact'];
 
   return (
-    <header className={`py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : ''}`}>
-      <nav className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center h-[95px]">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : ''}`}>
+      <nav className="container mx-auto flex items-center justify-between h-[130px]">
+        <div className="flex items-center h-full">
           <img 
             src={logo} 
             alt="TIDIPRINT" 
-            className="w-auto h-full object-contain"
+            className="w-auto h-[95px] object-contain"
           />
         </div>
         <ul className="flex items-center">

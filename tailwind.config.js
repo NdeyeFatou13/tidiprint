@@ -9,6 +9,7 @@ module.exports = {
         'secondary': '#1A2B4A',
         'button-blue': '#1E3A5F',
         'background': '#FFFBF9',
+        'white' : '#ffffff'
       },
       margin: {
         '25': '100px',
