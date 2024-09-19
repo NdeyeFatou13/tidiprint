@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/ancienne-url"
+  to = "/nouvelle-url"
+  status = 301
+  force = true
