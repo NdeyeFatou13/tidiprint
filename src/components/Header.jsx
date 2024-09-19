@@ -17,8 +17,32 @@ const Header = () => {
 
   const menuItems = ['Accueil', 'Services', 'Portfolio', 'Contact'];
 
+  const handleMenuClick = (item) => {
+    setActivePage(item);
+    setIsMenuOpen(false);
+
+    if (item.toLowerCase() === 'accueil') {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else {
+      const element = document.getElementById(item.toLowerCase());
+      if (element) {
+        const headerOffset = 100; // Ajustez cette valeur selon la hauteur de votre header
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : ''}`}>
       <nav className="container mx-auto px-4">
         <div className="flex items-center justify-between h-[80px] md:h-[100px] lg:h-[130px]">
           <div className="flex items-center h-full">
@@ -47,7 +71,10 @@ const Header = () => {
                   className={`text-secondary hover:text-primary font-semibold text-lg xl:text-xl ${
                     activePage === item ? 'font-extrabold border-b-2 border-primary' : ''
                   }`}
-                  onClick={() => setActivePage(item)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMenuClick(item);
+                  }}
                 >
                   {item}
                 </a>
@@ -65,9 +92,9 @@ const Header = () => {
                   className={`block px-4 py-2 text-secondary hover:text-primary font-semibold text-base ${
                     activePage === item ? 'font-extrabold border-l-4 border-primary' : ''
                   }`}
-                  onClick={() => {
-                    setActivePage(item);
-                    setIsMenuOpen(false);
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMenuClick(item);
                   }}
                 >
                   {item}

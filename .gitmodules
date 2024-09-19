@@ -1,0 +1,3 @@
+[submodule "tidiprint"]
+    path = tidiprint
+    url = https://github.com/example/tidiprint.git
