@@ -8,28 +8,49 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+
+      const sections = ['Accueil', 'Services', 'Portfolio', 'Contact'];
+      let current = '';
+
+      if (scrollPosition < 100) {
+        // Si le scroll est près du haut, considérez "Accueil" comme actif
+        current = 'Accueil';
+      } else {
+        for (let section of sections) {
+          const element = document.getElementById(section.toLowerCase());
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 150 && rect.bottom >= 150) {
+              current = section;
+              break;
+            }
+          }
+        }
+      }
+
+      if (current && current !== activePage) {
+        setActivePage(current);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activePage]);
 
   const menuItems = ['Accueil', 'Services', 'Portfolio', 'Contact'];
 
   const handleMenuClick = (item) => {
     setActivePage(item);
     setIsMenuOpen(false);
-
-    if (item.toLowerCase() === 'accueil') {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+    
+    if (item === 'Accueil') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       const element = document.getElementById(item.toLowerCase());
       if (element) {
-        const headerOffset = isScrolled ? 70 : 100; // Ajustez ces valeurs selon vos besoins
+        const headerOffset = 100;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -68,15 +89,16 @@ const Header = () => {
               <li key={item} className={index < menuItems.length - 1 ? 'mr-8 xl:mr-25' : ''}>
                 <a 
                   href={`#${item.toLowerCase()}`} 
-                  className={`text-secondary hover:text-primary font-semibold ${isScrolled ? 'text-base' : 'text-lg xl:text-xl'} transition-all duration-300 ${
-                    activePage === item ? 'font-extrabold border-b-2 border-primary' : ''
-                  }`}
+                  className={`text-secondary hover:text-primary font-semibold ${isScrolled ? 'text-base' : 'text-lg xl:text-xl'} transition-all duration-300 relative`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleMenuClick(item);
                   }}
                 >
                   {item}
+                  {activePage === item && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary transition-all duration-300"></span>
+                  )}
                 </a>
               </li>
             ))}
