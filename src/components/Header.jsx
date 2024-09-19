@@ -8,7 +8,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -29,7 +29,7 @@ const Header = () => {
     } else {
       const element = document.getElementById(item.toLowerCase());
       if (element) {
-        const headerOffset = 100; // Ajustez cette valeur selon la hauteur de votre header
+        const headerOffset = isScrolled ? 70 : 100; // Ajustez ces valeurs selon vos besoins
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -44,12 +44,12 @@ const Header = () => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : ''}`}>
       <nav className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-[80px] md:h-[100px] lg:h-[130px]">
+        <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[70px]' : 'h-[100px] lg:h-[130px]'}`}>
           <div className="flex items-center h-full">
             <img 
               src={logo} 
               alt="TIDIPRINT" 
-              className="w-auto h-[60px] md:h-[75px] lg:h-[95px] object-contain"
+              className={`w-auto transition-all duration-300 ${isScrolled ? 'h-[50px]' : 'h-[60px] md:h-[75px] lg:h-[95px]'} object-contain`}
             />
           </div>
           <div className="lg:hidden">
@@ -68,7 +68,7 @@ const Header = () => {
               <li key={item} className={index < menuItems.length - 1 ? 'mr-8 xl:mr-25' : ''}>
                 <a 
                   href={`#${item.toLowerCase()}`} 
-                  className={`text-secondary hover:text-primary font-semibold text-lg xl:text-xl ${
+                  className={`text-secondary hover:text-primary font-semibold ${isScrolled ? 'text-base' : 'text-lg xl:text-xl'} transition-all duration-300 ${
                     activePage === item ? 'font-extrabold border-b-2 border-primary' : ''
                   }`}
                   onClick={(e) => {

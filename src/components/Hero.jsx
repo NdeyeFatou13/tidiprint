@@ -2,6 +2,20 @@ import React from 'react';
 import heroImage from '../hero.png'; 
 
 const Hero = () => {
+  const handleServicesClick = (e) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      const headerOffset = 70; // Ajustez cette valeur selon la hauteur de votre header compact
+      const elementPosition = servicesSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
   return (
     <section className="bg-background pt-[150px] pb-10 sm:pb-16 md:pb-20"> {/* Espacement fixe en haut */}
       <div className="container mx-auto px-4">
@@ -21,7 +35,10 @@ const Hero = () => {
               <span className="hidden sm:inline"><br /></span>
               vous accompagnons de la conception au produit fini.
             </p>
-            <button className="w-full sm:w-auto px-6 py-3 bg-[#1E3A5F] text-white rounded-[20px] font-inter font-bold text-base hover:bg-opacity-90 transition-colors duration-300">
+            <button 
+              className="w-full sm:w-auto px-6 py-3 bg-[#1E3A5F] text-white rounded-[20px] font-inter font-bold text-base hover:bg-opacity-90 transition-colors duration-300"
+              onClick={handleServicesClick}
+            >
               Découvrez nos services
             </button>
           </div>
