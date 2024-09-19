@@ -1,6 +1,3 @@
 [submodule "tidiprint"]
 	path = tidiprint
 	url = https://github.com/NdeyeFatou13/tidiprint.git
-[submodule "new-tidiprint-name"]
-	path = new-tidiprint-name
-	url = https://github.com/NdeyeFatou13/tidiprint.git
