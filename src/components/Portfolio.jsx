@@ -9,7 +9,6 @@ const PortfolioItem = ({ title, subtitle, imageUrl, index }) => (
     data-aos="fade-up"
     data-aos-delay={index * 100}
     data-aos-duration="1000"
-    data-aos-anchor-placement="top-bottom"
   >
     <div className="w-full aspect-square mb-2 overflow-hidden">
       <img 
@@ -44,14 +43,12 @@ const Portfolio = () => {
         <h2 
           className="text-4xl font-bold text-white mb-4 text-center"
           data-aos="fade-down"
-          data-aos-duration="1000"
         >
           Portfolio
         </h2>
         <p 
           className="text-primary text-center mb-12"
           data-aos="fade-up"
-          data-aos-duration="1000"
           data-aos-delay="200"
         >
           Découvrez une gamme de produits personnalisables, conçus pour répondre à vos besoins et dépasser vos attentes.
