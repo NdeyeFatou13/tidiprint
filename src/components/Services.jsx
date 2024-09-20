@@ -7,7 +7,7 @@ import businessImage from '../business-image.png';
 import familyImage from '../family-image.png';
 
 const TextBlock = ({ title, description }) => (
-  <div className="bg-white p-4 sm:p-6 flex flex-col justify-center h-full">
+  <div className="bg-white p-4 sm:p-6 md:p-8 flex flex-col justify-center h-full">
     <h3 
       className="text-xl sm:text-2xl font-bold text-secondary mb-2 sm:mb-4"
       data-aos="fade-up"
@@ -33,21 +33,21 @@ TextBlock.propTypes = {
 
 const ServiceItem = ({ imageUrl, title, description, reverse, index }) => (
   <div 
-    className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} mb-12 md:mb-20`}
+    className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
     data-aos="fade-up"
     data-aos-duration="800"
     data-aos-delay={index * 100}
   >
     <div 
-      className="w-full md:w-1/2 mb-4 md:mb-0"
+      className="w-full md:w-1/2"
       data-aos="zoom-in"
       data-aos-duration="600"
       data-aos-delay={200 + index * 50}
     >
-      <img src={imageUrl} alt={title} className="w-full h-64 md:h-full object-cover rounded-lg shadow-md" />
+      <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
     </div>
     <div 
-      className="w-full md:w-1/2 md:px-6"
+      className="w-full md:w-1/2"
       data-aos="fade-up"
       data-aos-duration="600"
       data-aos-delay={300 + index * 50}
@@ -85,17 +85,17 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-12 sm:py-16 bg-background">
+    <section id="services" className="py-10 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 
-          className="text-3xl sm:text-4xl font-bold text-secondary mb-4 text-center"
+          className="text-3xl sm:text-4xl font-bold text-secondary mb-2 sm:mb-4 text-center"
           data-aos="fade-down"
           data-aos-duration="800"
         >
           Nos services
         </h2>
         <p 
-          className="text-sm sm:text-base text-gray-600 mb-8 sm:mb-12 text-center max-w-2xl mx-auto"
+          className="text-sm sm:text-base text-gray-600 mb-8 sm:mb-12 md:mb-16 text-center max-w-2xl mx-auto"
           data-aos="fade-up"
           data-aos-delay="100"
           data-aos-duration="800"
@@ -103,7 +103,7 @@ const Services = () => {
           Nous vous accompagnons à chaque étape, de l&apos;idée initiale à la livraison finale.
         </p>
         
-        <div className="space-y-12 md:space-y-20">
+        <div className="max-w-[992px] mx-auto">
           {services.map((service, index) => (
             <ServiceItem 
               key={index}
